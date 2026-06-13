@@ -1,0 +1,297 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@source "../../../{app,components,hooks,lib,messages}/**/*.{js,ts,jsx,tsx,mdx}";
+
+@theme inline {
+  --radius: 0.5rem;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Sage Green brand tokens */
+  --color-canvas: #fafaf9;
+  --color-ink: #171717;
+  --color-ink-soft: #6b7280;
+  --color-success: #059669;
+  --color-warning: #f59e0b;
+  --color-paper-tint: #f5f6f5;
+  --color-steel-grey: #6b7280;
+  --color-border-soft: #e5e7eb;
+
+  /* Soft blur shadows — modern minimalist */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+  --shadow-default: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+
+  /* Fonts */
+  --font-sans: 'Geist', sans-serif;
+  --font-mono: 'Space Grotesk', monospace;
+  --font-heading: var(--font-sans);
+
+  /* Radius */
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Animations */
+  --animate-gradient: gradient 8s linear infinite;
+
+  @keyframes gradient {
+    to {
+      background-position: 200% center;
+    }
+  }
+}
+
+:root {
+  /* Sage Green — natural, young, professional */
+  --background: #fafaf9;
+  --foreground: #171717;
+
+  --card: #ffffff;
+  --card-foreground: #171717;
+
+  --popover: #ffffff;
+  --popover-foreground: #171717;
+
+  --primary: #2d6a4f;
+  --primary-foreground: #ffffff;
+
+  --secondary: #f0f2f0;
+  --secondary-foreground: #171717;
+
+  --muted: #f0f2f0;
+  --muted-foreground: #6b7280;
+
+  --accent: #d1e5db;
+  --accent-foreground: #2d6a4f;
+
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+
+  --success: #059669;
+  --warning: #f59e0b;
+
+  --border: #e5e7eb;
+  --input: #ffffff;
+  --ring: #059669;
+
+  --chart-1: #2d6a4f;
+  --chart-2: #059669;
+  --chart-3: #f59e0b;
+  --chart-4: #3b82f6;
+  --chart-5: #171717;
+
+  --sidebar: #f0f2f0;
+  --sidebar-foreground: #171717;
+  --sidebar-primary: #2d6a4f;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #d1e5db;
+  --sidebar-accent-foreground: #2d6a4f;
+  --sidebar-border: #e5e7eb;
+  --sidebar-ring: #059669;
+}
+
+.dark {
+  --background: #0c1914;
+  --foreground: #f0f4f2;
+  --card: #162b22;
+  --card-foreground: #f0f4f2;
+  --popover: #162b22;
+  --popover-foreground: #f0f4f2;
+  --primary: #4ade80;
+  --primary-foreground: #0c1914;
+  --secondary: #1e332b;
+  --secondary-foreground: #f0f4f2;
+  --muted: #1e332b;
+  --muted-foreground: #9ca3af;
+  --accent: #1e332b;
+  --accent-foreground: #f0f4f2;
+  --destructive: #f87171;
+  --border: #1e332b;
+  --input: #1e332b;
+  --ring: #4ade80;
+  --sidebar: #0c1914;
+  --sidebar-foreground: #f0f4f2;
+  --sidebar-primary: #4ade80;
+  --sidebar-primary-foreground: #0c1914;
+  --sidebar-accent: #1e332b;
+  --sidebar-accent-foreground: #f0f4f2;
+  --sidebar-border: #1e332b;
+  --sidebar-ring: #4ade80;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+/* ============================================
+   PRINT STYLES (preserved from original)
+   ============================================ */
+
+@media print {
+  html,
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .resume-print,
+  .resume-print *,
+  .cover-letter-print,
+  .cover-letter-print * {
+    visibility: visible !important;
+  }
+
+  .resume-print,
+  .cover-letter-print {
+    width: 100% !important;
+    max-width: 210mm !important;
+    min-height: 0 !important;
+    position: static !important;
+    margin: 0 auto !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+  }
+
+  .resume-body {
+    box-shadow: none !important;
+    background: #ffffff !important;
+  }
+
+  .resume-scale {
+    transform: none !important;
+    scale: 1 !important;
+  }
+
+  a {
+    color: #000000 !important;
+    text-decoration: none !important;
+  }
+}
+
+/* ============================================
+   PAGE BREAK CONTROL
+   ============================================ */
+
+.resume-body .resume-item {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.resume-body .resume-section-title,
+.resume-body .resume-section-title-sm {
+  break-after: avoid;
+  page-break-after: avoid;
+  orphans: 3;
+  widows: 3;
+}
+
+.resume-body .resume-section {
+  break-inside: auto;
+}
+
+.resume-body .resume-section-title + .resume-items > *:first-child,
+.resume-body .resume-section-title-sm + .resume-items > *:first-child,
+.resume-body .resume-section-title + p,
+.resume-body .resume-section-title-sm + p,
+.resume-body .resume-section-title + ul,
+.resume-body .resume-section-title-sm + ul,
+.resume-body .resume-section-title + .resume-item,
+.resume-body .resume-section-title-sm + .resume-item {
+  break-before: avoid;
+  page-break-before: avoid;
+}
+
+.resume-body [data-no-break] {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+@media print {
+  .resume-body {
+    padding: var(--margin-top) var(--margin-right) var(--margin-bottom) var(--margin-left) !important;
+  }
+
+  .resume-body .resume-section-title,
+  .resume-body .resume-section-title-sm {
+    border-bottom-color: #9ca3af !important;
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  .resume-body .resume-item {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .resume-body .resume-section-title + .resume-items > *:first-child,
+  .resume-body .resume-section-title-sm + .resume-items > *:first-child,
+  .resume-body .resume-section-title + p,
+  .resume-body .resume-section-title-sm + p,
+  .resume-body .resume-section-title + ul,
+  .resume-body .resume-section-title-sm + ul,
+  .resume-body .resume-section-title + .resume-item,
+  .resume-body .resume-section-title-sm + .resume-item {
+    break-before: avoid !important;
+    page-break-before: avoid !important;
+  }
+}

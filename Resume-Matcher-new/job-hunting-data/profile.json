@@ -1,0 +1,36 @@
+{
+  "name": "",
+  "education": {
+    "school": "",
+    "grade": "大二",
+    "graduation_year": 2028,
+    "major": ""
+  },
+  "target": {
+    "roles": ["AI产品经理", "AI产品运营", "AI项目助理"],
+    "industries": ["AI/大模型", "互联网", "SaaS"],
+    "preferred_cities": [],
+    "min_salary": "",
+    "internship_duration": "3个月以上"
+  },
+  "skills": {
+    "hard": [],
+    "soft": ["学习能力强", "执行力强"],
+    "tools": [],
+    "languages": []
+  },
+  "projects": [],
+  "experience": [],
+  "greeting_style": {
+    "preferred_tone": "真诚直接",
+    "avoid_words": ["您好", "尊敬的", "本人"],
+    "strengths_to_highlight": ["大二有时间优势", "零基础但动手能力强", "独立复现AI项目"],
+    "weaknesses_to_frame": ["非科班出身但自学能力强"]
+  },
+  "job_hunting": {
+    "platforms": ["BOSS直聘", "牛客网", "实习僧"],
+    "response_rate": 0,
+    "total_applications": 0,
+    "interviews_landed": 0
+  }
+}

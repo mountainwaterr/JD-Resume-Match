@@ -1,0 +1,29 @@
+# 环境变量 & 密钥 — 绝不提交
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# 数据库文件
+*.sqlite3
+*.db
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Claude Code / AI 工具个人数据
+.claude/*
+!.claude/CLAUDE.md
+!.claude/settings.json
+.agents/
+.codex/
+.gemini/
+.cursor/
+skills-lock.json
