@@ -9,6 +9,14 @@
 *.db
 
 # 系统文件
+# 依赖包
+node_modules/
+
+# 构建产物
+.next/
+dist/
+
+# 系统垃圾
 .DS_Store
 Thumbs.db
 
