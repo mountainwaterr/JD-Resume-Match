@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import { useSession, signOut } from '@/lib/auth-client';
 
-const NAV_ITEMS = [
+export const NAV_ITEMS = [
   { href: '/dashboard', label: '总览', icon: LayoutDashboard },
   { href: '/resumes', label: '我的简历', icon: FileText },
   { href: '/tailor', label: '职位匹配', icon: Target },
@@ -40,7 +40,7 @@ export function Sidebar() {
   };
 
   return (
-    <aside className="fixed left-0 top-0 z-40 flex h-screen w-56 flex-col border-r border-sidebar-border bg-sidebar">
+    <aside className="fixed left-0 top-0 z-40 flex h-screen w-56 flex-col border-r border-sidebar-border bg-sidebar max-md:hidden">
       <div className="flex h-14 items-center border-b border-sidebar-border px-5">
         <Link
           href="/dashboard"

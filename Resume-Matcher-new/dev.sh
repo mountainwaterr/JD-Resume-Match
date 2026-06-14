@@ -31,7 +31,7 @@ BACKEND_PID=$!
 
 echo "=== Starting Frontend (port 3000) ==="
 cd "$FRONTEND_DIR"
-npx next dev --turbopack &
+npx next dev --turbopack -H 0.0.0.0 &
 FRONTEND_PID=$!
 
 echo ""
