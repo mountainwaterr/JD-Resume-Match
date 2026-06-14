@@ -11,22 +11,22 @@ export const auth = betterAuth({
     enabled: true,
   },
   // Trust localhost, LAN IPs, and tunnel domains (localtunnel, ngrok, cloudflared, etc.)
-  trustedOrigins: (origin: string) => {
-    // Allow requests without Origin header (same-origin, direct API calls)
-    if (!origin) return true;
+  trustedOrigins: (origin: unknown) => {
+    const originStr = typeof origin === 'string' ? origin : '';
+    if (!originStr) return [baseUrl || 'http://localhost:3000'];
     // Local dev
-    if (origin.startsWith('http://localhost') || origin.startsWith('http://127.0.0.1')) return true;
-    if (origin.startsWith('http://10.') || origin.startsWith('http://192.168.')) return true;
+    if (originStr.startsWith('http://localhost') || originStr.startsWith('http://127.0.0.1')) return [originStr];
+    if (originStr.startsWith('http://10.') || originStr.startsWith('http://192.168.')) return [originStr];
     // Explicit BETTER_AUTH_URL
-    if (baseUrl && origin === baseUrl) return true;
+    if (baseUrl && originStr === baseUrl) return [originStr];
     // Tunnel services
     if (
-      origin.endsWith('.loca.lt') ||
-      origin.endsWith('.trycloudflare.com') ||
-      origin.includes('ngrok') ||
-      origin.includes('bore.pub')
-    ) return true;
-    return false;
+      originStr.endsWith('.loca.lt') ||
+      originStr.endsWith('.trycloudflare.com') ||
+      originStr.includes('ngrok') ||
+      originStr.includes('bore.pub')
+    ) return [originStr];
+    return [];
   },
   session: {
     expiresIn: 7 * 24 * 60 * 60,
