@@ -1,8 +1,36 @@
-FROM python:3.13-slim
-WORKDIR /app
+# ============================================
+# Stage 1: Build Frontend
+# ============================================
+FROM node:22-bookworm AS frontend-builder
 
-# System deps for Playwright/PDF rendering (Chromium needs these libraries)
+ENV NEXT_TELEMETRY_DISABLED=1
+
+# BACKEND_ORIGIN must match the port start.sh runs the backend on (8000)
+ARG BACKEND_ORIGIN=http://127.0.0.1:8000
+ENV BACKEND_ORIGIN=${BACKEND_ORIGIN}
+
+WORKDIR /app/frontend
+
+COPY apps/frontend/package*.json ./
+RUN npm ci
+
+COPY apps/frontend/ ./
+RUN npm run build
+
+# ============================================
+# Stage 2: Final Image
+# ============================================
+FROM python:3.13-slim-bookworm
+
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    NODE_ENV=production \
+    NEXT_TELEMETRY_DISABLED=1
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates \
     curl \
     libnss3 libnspr4 libatk1.0-0 libatk-bridge2.0-0 \
     libcups2 libdrm2 libxkbcommon0 libxcomposite1 \
@@ -10,24 +38,33 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libasound2 libpango-1.0-0 libcairo2 libatspi2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
-# Install uv (fast Python package manager)
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh
-ENV PATH="/root/.local/bin:$PATH"
+WORKDIR /app
 
-# Copy dependency files from backend subdirectory
-COPY apps/backend/pyproject.toml apps/backend/uv.lock ./
-RUN uv sync --frozen --no-dev
+# Copy Node.js runtime from frontend builder
+COPY --from=frontend-builder /usr/local/bin/node /usr/local/bin/node
 
-# Install Playwright Chromium with its system dependencies
-RUN uv run playwright install --with-deps chromium
+# Backend
+COPY apps/backend /app/backend
+WORKDIR /app/backend
+RUN pip install . && python -m playwright install chromium
 
-# Copy backend source code
-COPY apps/backend/ .
+# Frontend standalone output
+COPY --from=frontend-builder /app/frontend/.next/standalone /app/frontend/
+COPY --from=frontend-builder /app/frontend/.next/static /app/frontend/.next/static
+COPY --from=frontend-builder /app/frontend/public /app/frontend/public
 
-# Create data directory for TinyDB
-RUN mkdir -p /app/data
+# Startup script
+COPY docker/start.sh /app/start.sh
+RUN sed -i 's/\r$//' /app/start.sh && chmod +x /app/start.sh
 
-EXPOSE 8000
+# Data directory for TinyDB
+RUN mkdir -p /app/backend/data
 
-# Render sets PORT env var automatically, default to 8000
-CMD uv run uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}
+WORKDIR /app
+
+EXPOSE 3000
+
+HEALTHCHECK --interval=10s --timeout=10s --start-period=30s --retries=5 \
+    CMD curl -f http://127.0.0.1:8000/api/v1/health || exit 1
+
+CMD ["/app/start.sh"]

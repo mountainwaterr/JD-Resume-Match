@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: resume-matcher-api
+    name: resume-matcher
     runtime: docker
     region: singapore
     plan: free
@@ -8,11 +8,15 @@ services:
     envVars:
       - key: LLM_PROVIDER
         value: deepseek
-      - key: LLM_API_KEY
-        value: sk-your-deepseek-api-key
       - key: LLM_MODEL
         value: deepseek-chat
-      - key: FRONTEND_BASE_URL
-        value: https://placeholder.vercel.app
-      - key: CORS_ORIGINS
-        value: '["https://placeholder.vercel.app"]'
+      - key: LLM_API_KEY
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: BETTER_AUTH_SECRET
+        sync: false
+      - key: BETTER_AUTH_URL
+        value: https://placeholder.onrender.com
+      - key: PUBLIC_URL
+        value: https://placeholder.onrender.com
