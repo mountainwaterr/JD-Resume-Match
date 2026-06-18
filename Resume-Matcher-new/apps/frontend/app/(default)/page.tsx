@@ -15,10 +15,6 @@ export default function Home() {
 
   const t = (zh: string, en: string) => (uiLanguage === 'zh' ? zh : en);
 
-  const scrollToFeatures = () => {
-    document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <div className="min-h-screen bg-background">
       {/* Top Bar */}
@@ -52,18 +48,18 @@ export default function Home() {
       <section className="flex min-h-screen flex-col items-center justify-center px-6 pt-14">
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="font-serif text-5xl leading-tight tracking-tight md:text-6xl lg:text-7xl">
-            {t('用 AI 打造完美简历', 'AI-Powered Resume That Gets You Hired')}
+            {t('测测你的简历匹配度，结果可能会扎心', 'How Well Does Your Resume Actually Match?')}
           </h1>
           <p className="mt-6 text-lg text-muted-foreground md:text-xl">
             {t(
-              '几分钟内为每个职位量身定制简历，智能匹配、一键生成',
-              'Tailor your resume to every job in minutes. Smart matching, one-click generation.'
+              '上传简历 + 粘贴JD，AI给你一份毫不留情的匹配报告。不是帮你改简历，是让你看清自己几斤几两。',
+              'Upload your resume + paste a JD. AI gives you an honest match report — no sugarcoating.'
             )}
           </p>
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Button size="lg" className="gap-2 px-8 text-base" asChild>
-              <Link href="/login">
-                {t('开始使用', 'Get Started')}
+              <Link href="/resume-match">
+                {t('免费测一测', 'Test for Free')}
                 <ArrowRight className="size-4" />
               </Link>
             </Button>
@@ -71,9 +67,11 @@ export default function Home() {
               variant="outline"
               size="lg"
               className="gap-2 px-8 text-base"
-              onClick={scrollToFeatures}
+              asChild
             >
-              {t('了解更多', 'Learn More')}
+              <Link href="/resume-match">
+                {t('免登录体验，数据不留存', 'No login needed, data not stored')}
+              </Link>
             </Button>
           </div>
         </div>
@@ -119,24 +117,24 @@ export default function Home() {
             {[
               {
                 icon: Sparkles,
-                titleZh: 'AI 智能匹配',
-                titleEn: 'AI Smart Matching',
-                descZh: '分析职位描述，自动匹配关键技能和经验，优化简历关键词',
-                descEn: 'Analyze job descriptions, auto-match key skills and experience',
+                titleZh: '匹配度体检',
+                titleEn: 'Match Checkup',
+                descZh: '6个维度打分，看看你是"天选之子"还是"重在参与"',
+                descEn: 'Scored across 6 dimensions — find out if you\'re a perfect fit or just showing up',
               },
               {
                 icon: FileText,
-                titleZh: '多模板样式',
-                titleEn: 'Multiple Templates',
-                descZh: '多种专业简历模板，一键切换样式和格式',
-                descEn: 'Professional templates with one-click style switching',
+                titleZh: 'JD翻译官',
+                titleEn: 'JD Translator',
+                descZh: '把JD里那些不说人话的要求，翻译成你听得懂的技能清单',
+                descEn: 'Translate corporate jargon into plain skills you actually understand',
               },
               {
                 icon: Download,
-                titleZh: '一键导出 PDF',
-                titleEn: 'One-Click PDF Export',
-                descZh: '生成专业排版的 PDF 简历，随时下载使用',
-                descEn: 'Generate professionally formatted PDF resumes instantly',
+                titleZh: '差距报告',
+                titleEn: 'Gap Report',
+                descZh: '诚实地告诉你缺什么、怎么补，而不是帮你假装什么都会',
+                descEn: 'Honestly shows what you lack and how to improve — no pretending',
               },
             ].map((feature, i) => (
               <div
@@ -156,27 +154,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="bg-primary px-6 py-24">
-        <div className="mx-auto max-w-5xl text-center">
-          <h2 className="font-serif text-3xl text-white md:text-4xl">
-            {t('用数据说话', 'Trusted by Job Seekers')}
-          </h2>
-          <div className="mt-16 grid gap-12 md:grid-cols-3">
-            {[
-              { value: '10k+', labelZh: '已创建简历', labelEn: 'Resumes Created' },
-              { value: '95%', labelZh: '匹配成功率', labelEn: 'Match Success Rate' },
-              { value: '3min', labelZh: '平均生成时间', labelEn: 'Average Generation Time' },
-            ].map((stat, i) => (
-              <div key={i}>
-                <div className="font-mono text-5xl font-bold text-white">{stat.value}</div>
-                <div className="mt-2 text-sm text-white/70">{t(stat.labelZh, stat.labelEn)}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer className="border-t border-border/50 px-6 py-12">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 sm:flex-row">
@@ -184,7 +161,7 @@ export default function Home() {
             <span className="text-primary">Resume</span> Matcher
           </Link>
           <p className="text-sm text-muted-foreground">
-            {t('用 AI 打造你的完美简历', 'Build your perfect resume with AI')}
+            {t('诚实地了解自己，比美化简历更重要', 'Knowing yourself honestly matters more than a polished resume')}
           </p>
           <div className="flex items-center gap-6 text-sm text-muted-foreground">
             <Link

@@ -4,12 +4,16 @@
 
 ## What This Repo Is
 
-Resume Matcher is an AI-powered application that helps users tailor resumes to job descriptions. It consists of:
+Resume Matcher is an AI-powered resume match analysis tool. Unlike traditional resume builders that "beautify" your resume, it first gives you an honest, unvarnished match report against a job description — scoring across 6 dimensions (skills, experience, education, language, projects, overall) — then helps you close the gaps.
 
-- **Backend**: FastAPI + Python 3.11+ with multi-provider LLM support via LiteLLM
-- **Frontend**: Next.js 15 + React 19 with Swiss International Style design
-- **Database**: TinyDB (JSON file storage)
+Tech stack:
+
+- **Backend**: FastAPI + Python 3.13+ with multi-provider LLM support via LiteLLM (default: DeepSeek)
+- **Frontend**: Next.js 16 + React 19 with Swiss International Style design
+- **Database**: TinyDB (JSON file storage) + Neon PostgreSQL
 - **PDF Generation**: Headless Chromium via Playwright
+- **Auth**: Better Auth (email/password)
+- **Deployment**: Single-container Docker (frontend + backend + API on one port)
 
 ## Non-Negotiable Rules
 

@@ -4,7 +4,6 @@ const protectedPaths = [
   '/dashboard',
   '/builder',
   '/tailor',
-  '/resume-match',
   '/resumes',
   '/settings',
 ];

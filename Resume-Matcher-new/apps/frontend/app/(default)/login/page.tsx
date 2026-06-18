@@ -152,6 +152,16 @@ export default function LoginPage() {
                 注册
               </Link>
             </p>
+            <div className="mt-4 pt-4 border-t border-border/50">
+              <Button variant="outline" className="w-full gap-2" asChild>
+                <Link href="/resume-match">
+                  免登录体验，数据不留存
+                </Link>
+              </Button>
+              <p className="mt-2 text-center text-[11px] text-muted-foreground">
+                无需注册即可使用简历匹配分析功能
+              </p>
+            </div>
           </CardContent>
         </Card>
       </div>

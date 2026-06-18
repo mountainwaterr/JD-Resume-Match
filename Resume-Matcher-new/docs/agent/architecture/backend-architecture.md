@@ -1,6 +1,6 @@
 # Backend Architecture
 
-> FastAPI + Python 3.11+ | TinyDB | LiteLLM multi-provider
+> FastAPI + Python 3.13+ | TinyDB | LiteLLM multi-provider (default: DeepSeek)
 
 ## Directory Structure
 
@@ -63,7 +63,7 @@ db.get_stats() → {total_resumes, total_jobs, total_improvements}
 
 ## LLM Integration (`llm.py`)
 
-**Providers:** OpenAI, Anthropic, Gemini, DeepSeek, OpenRouter, Ollama
+**Providers:** DeepSeek (default), OpenAI, Anthropic, Gemini, OpenRouter, Ollama
 
 ```python
 await check_llm_health(config)     # 30s timeout
@@ -116,13 +116,15 @@ await render_resume_pdf(url, page_size, selector=".resume-print")
 ## Configuration
 
 ```bash
-LLM_PROVIDER=openai|anthropic|gemini|deepseek|openrouter|ollama
-LLM_MODEL=gpt-5-nano-2025-08-07
+LLM_PROVIDER=deepseek|openai|anthropic|gemini|openrouter|ollama
+LLM_MODEL=deepseek-chat
 LLM_API_KEY=sk-...
+BACKEND_HOST=0.0.0.0
+BACKEND_PORT=8000
 FRONTEND_BASE_URL=http://localhost:3000
 ```
 
-Config stored in `data/config.json`, takes precedence over env vars.
+Default provider is `deepseek` (not `openai`). Config stored in `data/config.json`, takes precedence over env vars.
 
 ## Error Handling
 

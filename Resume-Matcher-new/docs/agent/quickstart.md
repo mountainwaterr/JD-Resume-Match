@@ -23,9 +23,13 @@ npm install
 ## Development
 
 ```bash
+# One-click (recommended)
+bash dev.sh
+
+# Or manually:
 # Backend (Terminal 1, from repo root)
 cd apps/backend
-uv run uvicorn app.main:app --reload --port 8000
+uv run uvicorn app.main:app --host 0.0.0.0 --port 8000
 
 # Frontend (Terminal 2, from repo root)
 cd apps/frontend

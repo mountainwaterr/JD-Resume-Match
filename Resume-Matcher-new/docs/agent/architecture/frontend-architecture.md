@@ -1,6 +1,6 @@
 # Frontend Architecture
 
-> Next.js 15 + React 19 | TypeScript | Tailwind | Swiss International Style
+> Next.js 16 + React 19 | TypeScript | Tailwind v4 | Swiss International Style
 
 ## Directory Structure
 
@@ -29,6 +29,18 @@ apps/frontend/
 
 ## Pages
 
+### Home (`/`)
+- Landing page with honest product messaging ("诚实地了解自己，比美化简历更重要")
+- CTA buttons point to `/resume-match` (free, no login required)
+- Feature cards: Match Checkup, JD Translator, Gap Report
+- Multi-language support (zh, en)
+
+### Resume Match (`/resume-match`)
+- **Public route** (no authentication required)
+- Upload resume + paste JD → AI 6-dimension match scoring
+- Gap analysis and improvement suggestions
+- "No data stored" for unauthenticated users
+
 ### Dashboard (`/dashboard`)
 - Master resume card + tailored resume tiles
 - States: `loading | pending | processing | ready | failed`
@@ -47,9 +59,13 @@ apps/frontend/
 - Redirects to `/resumes/[new_id]`
 
 ### Settings (`/settings`)
-- Provider selection (6 providers)
+- Provider selection (6 providers, default: DeepSeek)
 - API key input
 - System status (cached, 30-min refresh)
+
+### Login / Register
+- Better Auth email/password authentication
+- "免登录体验" (try without login) button on login page → `/resume-match`
 
 ### Print Routes (`/print/resumes/[id]`, `/print/cover-letter/[id]`)
 - Headless Chrome renders these for PDF

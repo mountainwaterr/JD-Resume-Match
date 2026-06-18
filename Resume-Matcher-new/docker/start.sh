@@ -151,7 +151,7 @@ info "Loading configuration from environment and *_FILE secrets..."
 file_env "LOG_LEVEL" "INFO"
 file_env "LOG_LLM" "WARNING"
 
-file_env "LLM_PROVIDER" "openai"
+file_env "LLM_PROVIDER" "deepseek"
 
 # Only resolve optional LLM_* vars if they (or their *_FILE variants) are provided,
 # so we don't override backend defaults with empty strings.

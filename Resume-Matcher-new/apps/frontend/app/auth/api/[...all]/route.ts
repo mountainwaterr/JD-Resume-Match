@@ -4,8 +4,8 @@ import { NextResponse } from 'next/server';
 
 const handler = toNextJsHandler(auth);
 
-async function wrap(inner: (req: Request) => Promise<Response>) {
-  return async (req: Request) => {
+function wrap(inner: (req: Request) => Promise<Response>) {
+  return async (req: Request): Promise<Response> => {
     try {
       return await inner(req);
     } catch (e: unknown) {

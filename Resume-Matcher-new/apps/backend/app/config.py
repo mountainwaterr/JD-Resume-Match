@@ -95,7 +95,7 @@ def _get_llm_api_key_with_fallback() -> str:
 
     # Fallback to config file based on provider
     config_keys = get_api_keys_from_config()
-    provider = os.environ.get("LLM_PROVIDER", "openai")
+    provider = os.environ.get("LLM_PROVIDER", "deepseek")
 
     # Map provider to config key
     provider_map = {
@@ -140,9 +140,9 @@ class Settings(BaseSettings):
     @field_validator("llm_provider", mode="before")
     @classmethod
     def set_default_provider(cls, v: Any) -> str:
-        """Handle empty string provider by defaulting to openai."""
+        """Handle empty string provider by defaulting to deepseek."""
         if not v or (isinstance(v, str) and not v.strip()):
-            return "openai"
+            return "deepseek"
         return v
 
     @field_validator("log_llm", mode="before")

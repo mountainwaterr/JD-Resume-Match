@@ -26,7 +26,7 @@ trap cleanup EXIT INT TERM
 
 echo "=== Starting Backend (port 8000) ==="
 cd "$BACKEND_DIR"
-uv run uvicorn app.main:app --host 127.0.0.1 --port 8001 &
+uv run uvicorn app.main:app --host 0.0.0.0 --port 8000 &
 BACKEND_PID=$!
 
 echo "=== Starting Frontend (port 3000) ==="
