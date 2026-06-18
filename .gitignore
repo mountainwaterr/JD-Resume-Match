@@ -1,37 +1,131 @@
-# 环境变量 & 密钥 — 绝不提交
-.env
-.env.*
-!.env.example
-!.env.sample
+# .gitignore (in your-project-root/apps/backend/)
 
-# 数据库文件
+# Virtual Environment
+venv/
+.venv/
+env/
+ENV/
+activate_this.py
+
+# Python Bytecode and Caches
+__pycache__/
+*.py[cod]
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# SQLite databases
 *.sqlite3
 *.db
 
-# 系统文件
-# 依赖包
-node_modules/
+# Test artifacts
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
 
-# 构建产物
-.next/
-dist/
+# Local instance or config files specific to backend
+instance/
+.env # Backend specific environment variables
 
-# 系统垃圾
-.DS_Store
-Thumbs.db
+# Config file with API keys - NEVER COMMIT
+**/config.json
+apps/backend/data/config.json
 
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
+# cursor related files
+.cursor/
+.cursorrules
 
-# Claude Code / AI 工具个人数据
+# Claude Code — track only CLAUDE.md and settings.json, ignore everything else
+# (skills, subagents, thoughts, prompts, sessions are all personal workflow)
 .claude/*
 !.claude/CLAUDE.md
 !.claude/settings.json
-.agents/
-.codex/
-.gemini/
-.cursor/
 skills-lock.json
+
+# Root-level personal files — do not commit
+Claude.md
+CLAUDE.md
+.nul.lock
+apps/apps/
+
+# AI assistant tool folders (personal workflow, not tracked)
+.agents/
+.github/agents/
+.github/skills/
+.github/prompts/
+.github/copilot-instructions.md
+.kilocode/
+.gemini/
+.codex/
+.firecrawl/
+AGENTS.md
+GEMINI.md
+CODEX.md
+
+.DS_Store
+Thumbs.db
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+node_modules/
+**/node_modules/
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+.idea/
+
+# Config file with API keys - NEVER COMMIT
+config.json
+**/config.json

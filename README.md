@@ -49,12 +49,12 @@
 ### 1. 克隆项目
 ```bash
 git clone git@github.com:mountainwaterr/JD-Resume-Match.git
-cd JD-Resume-Match/Resume-Matcher-new
+cd JD-Resume-Match
 ```
 
 ### 2. 配置环境变量
 
-创建 `.env` 文件：
+在项目根目录创建 `.env` 文件：
 ```
 LLM_PROVIDER=deepseek
 LLM_MODEL=deepseek-chat
@@ -94,7 +94,7 @@ npm run dev
 docker compose up -d
 ```
 
-详见 [SETUP.md](Resume-Matcher-new/SETUP.md)。
+详见 [SETUP.md](SETUP.md)。
 
 ## 项目背景
 
@@ -102,4 +102,4 @@ docker compose up -d
 
 ## License
 
-Apache 2.0 — 详见 [LICENSE](Resume-Matcher-new/LICENSE)
+Apache 2.0 — 详见 [LICENSE](LICENSE)
